@@ -1,11 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import React from 'react'
 
 export default function FeatureForm({ onSubmitNewFeature, inputNewFeature }) {
-  const { loginWithRedirect, isAuthenticated } = useAuth0()
+  const { isAuthenticated, loginWithRedirect } = useAuth0()
 
-  return isAuthenticated ? (
-    <form onSubmit={onSubmitNewFeature}>
+  return (
+    <form className="flex items-center space-x-2" onSubmit={onSubmitNewFeature}>
       {/*<button type="button" onClick={() => logout()}>*/}
       {/*  Logout*/}
       {/*</button>*/}
@@ -16,10 +15,16 @@ export default function FeatureForm({ onSubmitNewFeature, inputNewFeature }) {
         ref={inputNewFeature}
         placeholder="Enter a new feature request?"
       />
+
+      {!isAuthenticated && (
+        <button
+          className="button"
+          type="button"
+          onClick={() => loginWithRedirect()}
+        >
+          Login
+        </button>
+      )}
     </form>
-  ) : (
-    <div className="bg-blue-50 p-6 rounded">
-      <button onClick={() => loginWithRedirect()}>Login</button>
-    </div>
   )
 }

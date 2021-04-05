@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <header className="py-10 border-b mb-10">
+    <header className="py-10">
       <div className="flex justify-center">
         <img src="/upstash.svg" alt="Upstash" width={200} />
       </div>
