@@ -1,5 +1,5 @@
 .next
-.idea
+.idea/
 node_modules
 public/ui
 public/sw*

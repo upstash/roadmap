@@ -77,8 +77,6 @@ function Home() {
   })
 
   const onSubmitNewFeature = getToken(async (token, event) => {
-    event.preventDefault()
-
     const requestOptions = {
       method: 'POST',
       headers: {
