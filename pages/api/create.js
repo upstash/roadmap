@@ -1,5 +1,6 @@
-import { getRedis, authenticate } from './utils'
+import { redis, authenticate } from './utils'
 import { string } from 'yup'
+import { DB_NAME, FEATURE_TYPE } from '../../lib/const'
 
 export default authenticate(async (req, res) => {
   const { title } = req.body
@@ -11,19 +12,15 @@ export default authenticate(async (req, res) => {
       .status(400)
       .json({ error: 'Min 10 and Max 70 characters please.' })
 
-  let redis = getRedis()
-
   const { nickname, email, updated_at, ...user } = req.user
+  const feature = {
+    title,
+    createdAt: Date.now(),
+    user,
+    status: FEATURE_TYPE.NEW
+  }
 
-  await redis.zadd(
-    'roadmap',
-    'NX',
-    1,
-    JSON.stringify({ title, createdAt: Date.now(), user })
-  )
-  redis.quit()
+  await redis.zadd(DB_NAME, 'NX', 1, JSON.stringify(feature))
 
-  res.json({
-    body: 'success'
-  })
+  res.json({ body: 'success' })
 })

@@ -1,11 +1,20 @@
 import { DateTime } from 'luxon'
 
-export default function FeatureCard({ item, onVote }) {
+export default function FeatureCardNew({ item, onVote, onPublish }) {
   const { score, title, createdAt, user } = item
+
+  const publish = () => {
+    if (confirm('Are you sure?')) {
+      onPublish(item)
+    }
+  }
+
   return (
     <article className="flex items-center space-x-4">
       <button
-        className="flex flex-col items-center border border-gray-300 py-1 w-10 rounded"
+        className="
+        flex flex-col items-center border border-gray-300 py-1 w-10 rounded
+        hover:bg-gray-100"
         onClick={() => onVote(item)}
       >
         <svg
@@ -23,31 +32,27 @@ export default function FeatureCard({ item, onVote }) {
         </svg>
         <span className="-mt-1 font-bold text-sm">{score}</span>
       </button>
+
       <div>
         <h3 className="text-lg font-bold">{title}</h3>
-        <div className="flex items-center space-x-1 text-gray-500">
+
+        <div className="flex items-center space-x-1 text-gray-400">
           <span>{user.name}</span>
           <span>•</span>
           <span>{DateTime.fromMillis(createdAt).toRelative()}</span>
-        </div>
-      </div>
-    </article>
-  )
-}
 
-export function FeatureCardSkeleton() {
-  return (
-    <article className="flex items-center space-x-4 text-gray-100">
-      <div className="flex flex-col items-center bg-gray-100 h-12 w-10 rounded" />
-      <div>
-        <h3 className="text-lg font-bold">
-          <span className="bg-gray-100 rounded">
-            New awesome feature request please
-          </span>
-        </h3>
-        <div className="mt-1 flex items-center space-x-2 leading-4">
-          <span className="bg-gray-100 rounded">Adem ilter</span>
-          <span className="bg-gray-100 rounded">23 minutes ago</span>
+          {process.env.NEXT_PUBLIC_AUTH0_ADMIN_ID === user.sub && (
+            <>
+              <span>•</span>
+              <button
+                type="button"
+                onClick={publish}
+                className="hover:text-gray-800 hover:underline"
+              >
+                Release
+              </button>
+            </>
+          )}
         </div>
       </div>
     </article>

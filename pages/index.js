@@ -1,60 +1,62 @@
-import Head from 'next/head'
 import { toast } from 'react-toastify'
-import React, { useState, useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import FeatureList from '../components/feature-list'
 import FeatureForm from '../components/feature-form'
 import Header from '../components/header'
+import useSWR from 'swr'
+import fetcher from '../lib/fetcher'
+import { FEATURE_TYPE } from '../lib/const'
 // import FormNotification from '../components/form-notification'
 
 function Home() {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0()
   const inputNewFeature = useRef()
   // const inputEmail = useRef()
-  const [loaded, setLoaded] = useState(false)
-  const [items, setItems] = useState([])
 
-  useEffect(() => {
-    refreshData()
-  }, [])
-
-  const refreshData = () => {
-    fetch('api/list')
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setItems(result)
-          setLoaded(true)
-        },
-        (error) => {
-          setLoaded(true)
-        }
-      )
-  }
+  const { data, isValidating, mutate } = useSWR('api/list', fetcher, {
+    initialData: { [FEATURE_TYPE.NEW]: [], [FEATURE_TYPE.RELEASED]: [] },
+    revalidateOnMount: true,
+    revalidateOnFocus: false
+  })
 
   const getToken = (func) => {
     return async (props) => {
       if (!isAuthenticated) {
-        toast.error('Login olman gerekli', {
-          hideProgressBar: true,
-          autoClose: 3000
-        })
+        toast.error('Login olman gerekli')
         return false
       }
 
       const token = await getAccessTokenSilently()
 
       if (!token) {
-        toast.error('User not found', {
-          hideProgressBar: true,
-          autoClose: 3000
-        })
+        toast.error('User not found')
         return false
       }
 
       return func(token, props)
     }
   }
+
+  const onPublish = getToken(async (token, item) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        authorization: token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(item)
+    }
+    fetch('api/publish', requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          toast.error(data.error)
+        } else {
+          mutate()
+        }
+      })
+  })
 
   const onVote = getToken(async (token, item) => {
     const requestOptions = {
@@ -69,14 +71,14 @@ function Home() {
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {
-          toast.error(data.error, { hideProgressBar: true, autoClose: 3000 })
+          toast.error(data.error)
         } else {
-          refreshData()
+          mutate()
         }
       })
   })
 
-  const onSubmitNewFeature = getToken(async (token, event) => {
+  const onSubmitNewFeature = getToken(async (token) => {
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -90,17 +92,13 @@ function Home() {
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {
-          toast.error(data.error, { hideProgressBar: true, autoClose: 3000 })
+          toast.error(data.error)
         } else {
-          toast.info('Your feature has been added to the list.', {
-            hideProgressBar: true,
-            autoClose: 3000
-          })
+          toast.info('Your feature has been added to the list.')
           inputNewFeature.current.value = ''
-          refreshData()
+          mutate()
         }
       })
-    event.preventDefault()
   })
 
   // const handleNewEmail = (event) => {
@@ -113,12 +111,9 @@ function Home() {
   //     .then((response) => response.json())
   //     .then((data) => {
   //       if (data.error) {
-  //         toast.error(data.error, { hideProgressBar: true, autoClose: 3000 })
+  //         toast.error(data.error)
   //       } else {
-  //         toast.info('Your email has been added to the list.', {
-  //           hideProgressBar: true,
-  //           autoClose: 3000
-  //         })
+  //         toast.info('Your email has been added to the list.')
   //         inputEmail.current.value = ''
   //         refreshData()
   //       }
@@ -128,11 +123,6 @@ function Home() {
 
   return (
     <>
-      <Head>
-        <title>Roadmap Voting</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <Header />
 
       <main>
@@ -141,7 +131,12 @@ function Home() {
           inputNewFeature={inputNewFeature}
         />
         <div className="mt-10">
-          <FeatureList data={items} loaded={loaded} onVote={onVote} />
+          <FeatureList
+            data={data}
+            dataLoading={isValidating}
+            onVote={onVote}
+            onPublish={onPublish}
+          />
         </div>
       </main>
 

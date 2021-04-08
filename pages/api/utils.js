@@ -13,9 +13,20 @@ function fixUrl(url) {
   return url
 }
 
-export function getRedis() {
-  return new Redis(fixUrl(process.env.REDIS_URL))
+class ClientRedis {
+  constructor() {
+    throw new Error('Use Singleton.getInstance()')
+  }
+
+  static getInstance() {
+    if (!ClientRedis.instance) {
+      ClientRedis.instance = new Redis(fixUrl(process.env.REDIS_URL))
+    }
+    return ClientRedis.instance
+  }
 }
+
+export const redis = ClientRedis.getInstance()
 
 export function authenticate(next) {
   return async (req, res) => {

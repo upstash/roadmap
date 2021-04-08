@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 
 export default function FeatureForm({ onSubmitNewFeature, inputNewFeature }) {
-  const { isAuthenticated, loginWithRedirect } = useAuth0()
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -10,10 +10,6 @@ export default function FeatureForm({ onSubmitNewFeature, inputNewFeature }) {
 
   return (
     <form className="flex items-center space-x-2" onSubmit={onSubmit}>
-      {/*<button type="button" onClick={() => logout()}>*/}
-      {/*  Logout*/}
-      {/*</button>*/}
-
       <input
         className="input"
         type="text"
@@ -23,11 +19,17 @@ export default function FeatureForm({ onSubmitNewFeature, inputNewFeature }) {
 
       {!isAuthenticated && (
         <button
-          className="button"
+          className="button flex-shrink-0"
           type="button"
           onClick={() => loginWithRedirect()}
         >
-          Login
+          Login to Enter
+        </button>
+      )}
+
+      {process.env.NODE_ENV === 'development' && isAuthenticated && (
+        <button type="button" onClick={() => logout()}>
+          Logout
         </button>
       )}
     </form>

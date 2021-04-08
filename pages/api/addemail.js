@@ -1,23 +1,15 @@
-import { getRedis } from './utils'
+import { redis } from './utils'
 
 module.exports = async (req, res) => {
-  let redis = getRedis()
-
   const body = req.body
   const email = body['email']
 
-  redis.on('error', function (err) {
-    throw err
-  })
-
   if (email && validateEmail(email)) {
     await redis.sadd('emails', email)
-    redis.quit()
     res.json({
       body: 'success'
     })
   } else {
-    redis.quit()
     res.json({
       error: 'Invalid email'
     })
