@@ -2,9 +2,10 @@ import './styles.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 import { ToastContainer } from 'react-toastify'
-import Footer from '../components/footer'
 import { Auth0Provider } from '@auth0/auth0-react'
 import Head from 'next/head'
+import Footer from '../components/footer'
+import Header from '../components/header'
 
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -19,7 +20,10 @@ export default function MyApp({ Component, pageProps }) {
       </Head>
 
       <div className="antialiased max-w-xl mx-auto px-4">
-        <Component {...pageProps} />
+        <Header />
+        <main>
+          <Component {...pageProps} />
+        </main>
         <Footer />
       </div>
 

@@ -1,4 +1,4 @@
-import { authenticate, redis } from './utils'
+import { authenticate, redis } from '../../lib/utils'
 import { DB_NAME } from '../../lib/const'
 
 export default authenticate(async (req, res) => {

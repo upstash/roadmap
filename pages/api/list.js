@@ -1,5 +1,5 @@
 import groupby from 'lodash.groupby'
-import { redis } from './utils'
+import { redis } from '../../lib/utils'
 import { DB_NAME, FEATURE_TYPE } from '../../lib/const'
 
 module.exports = async (req, res) => {

@@ -7,12 +7,10 @@ import Header from '../components/header'
 import useSWR from 'swr'
 import fetcher from '../lib/fetcher'
 import { FEATURE_TYPE } from '../lib/const'
-// import FormNotification from '../components/form-notification'
 
 function Home() {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0()
   const inputNewFeature = useRef()
-  // const inputEmail = useRef()
 
   const { data, isValidating, mutate } = useSWR('api/list', fetcher, {
     initialData: { [FEATURE_TYPE.NEW]: [], [FEATURE_TYPE.RELEASED]: [] },
@@ -101,50 +99,21 @@ function Home() {
       })
   })
 
-  // const handleNewEmail = (event) => {
-  //   const requestOptions = {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ email: inputEmail.current.value })
-  //   }
-  //   fetch('api/addemail', requestOptions)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (data.error) {
-  //         toast.error(data.error)
-  //       } else {
-  //         toast.info('Your email has been added to the list.')
-  //         inputEmail.current.value = ''
-  //         refreshData()
-  //       }
-  //     })
-  //   event.preventDefault()
-  // }
-
   return (
-    <>
-      <Header />
-
-      <main>
-        <FeatureForm
-          onSubmitNewFeature={onSubmitNewFeature}
-          inputNewFeature={inputNewFeature}
+    <main>
+      <FeatureForm
+        onSubmitNewFeature={onSubmitNewFeature}
+        inputNewFeature={inputNewFeature}
+      />
+      <div className="mt-10">
+        <FeatureList
+          data={data}
+          dataLoading={isValidating}
+          onVote={onVote}
+          onPublish={onPublish}
         />
-        <div className="mt-10">
-          <FeatureList
-            data={data}
-            dataLoading={isValidating}
-            onVote={onVote}
-            onPublish={onPublish}
-          />
-        </div>
-      </main>
-
-      {/*<FormNotification*/}
-      {/*  handleNewEmail={handleNewEmail}*/}
-      {/*  inputEmail={inputEmail}*/}
-      {/*/>*/}
-    </>
+      </div>
+    </main>
   )
 }
 

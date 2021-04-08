@@ -1,4 +1,4 @@
-import { redis, authenticate } from './utils'
+import { redis, authenticate } from '../../lib/utils'
 import { string } from 'yup'
 import { DB_NAME, FEATURE_TYPE } from '../../lib/const'
 
