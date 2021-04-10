@@ -27,11 +27,11 @@ export default function FeatureForm({ onSubmitNewFeature, inputNewFeature }) {
         </button>
       )}
 
-      {process.env.NODE_ENV === 'development' && isAuthenticated && (
-        <button type="button" onClick={() => logout()}>
+      {/*isAuthenticated && (
+        <button className="button" type="button" onClick={() => logout()}>
           Logout
         </button>
-      )}
+      )*/}
     </form>
   )
 }

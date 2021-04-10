@@ -3,7 +3,6 @@ import { useRef } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import FeatureList from '../components/feature-list'
 import FeatureForm from '../components/feature-form'
-import Header from '../components/header'
 import useSWR from 'swr'
 import fetcher from '../lib/fetcher'
 import { FEATURE_TYPE } from '../lib/const'
@@ -21,7 +20,7 @@ function Home() {
   const getToken = (func) => {
     return async (props) => {
       if (!isAuthenticated) {
-        toast.error('Login olman gerekli')
+        toast.error('Please login')
         return false
       }
 
