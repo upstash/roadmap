@@ -46,7 +46,7 @@ cp .env.local.example .env.local
 
 - `NEXT_PUBLIC_AUTH0_DOMAIN`: Can be found in the Auth0 dashboard under `settings`.
 - `NEXT_PUBLIC_AUTH0_CLIENT_ID`: Can be found in the Auth0 dashboard under `settings`.
-- `NEXT_PUBLIC_AUTH0_ADMIN_ID`: This is the  **user_id** of the admin user. First run your application and sign-in yourself. Then find your **user_id** int Auth0 console, **"User Management > Users"** page.
+- `NEXT_PUBLIC_AUTH0_ADMIN_ID`: This is the  **user_id** of the admin user. First run your application and sign-in yourself. Then find your **user_id** in the Auth0 console, **"User Management > Users"** page.
 
 #### Replace Your Logo
 Copy your logo image to `public` folder. Then edit `components/header/index.js`.
