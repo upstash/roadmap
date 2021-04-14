@@ -1,6 +1,10 @@
-# Roadmap
+# Roadmap Voting App Version-2 
 
-Bu uygulama ürününüz için kullanıcılardan yeni özellikler almak ve mevcut özellikleri oylayabilme imkanı sunar.
+You can deploy Roadmap application yourself and get feedback from your users about your roadmap features. 
+
+In version-2, the users should sign up (via Auth0) to add new features and vote them up. If you prefer the one without authentication, see the [old version](https://github.com/vercel/next.js/tree/canary/examples/with-redis). Also you can configure yourself as admin, to set a feature request as `released` also delete any feature request.  
+
+
 
 ![](https://github.com/upstash/roadmap/blob/main/public/ss.png)
 
@@ -26,12 +30,12 @@ cp .env.local.example .env.local
 
 #### Upstash environment
 
-- `REDIS_URL`: Oluşturduğunuz database detay sayfasında **Redis Connect** butonuna tıklayınca bulabilirsiniz.
+- `REDIS_URL`: Find the URL in the database details page in Upstash Console clicking on Redis Connect button.
 
 
 ## Configuring Auth0
 
-1. Go to the [Auth0 dashboard](https://manage.auth0.com/) and create a new application of type **Single Page Web Applications** and make sure to configure the following
+1. Go to the [Auth0 dashboard](https://manage.auth0.com/) and create a new application of type **Single Page Web Applications**
 2. Go to the settings page of the application
 3. Configure the following settings:
     - **Allowed Callback URLs**: Should be set to `http://localhost:3000/` when testing locally or typically to `https://myapp.com/` when deploying your application.
@@ -42,9 +46,7 @@ cp .env.local.example .env.local
 
 - `NEXT_PUBLIC_AUTH0_DOMAIN`: Can be found in the Auth0 dashboard under `settings`.
 - `NEXT_PUBLIC_AUTH0_CLIENT_ID`: Can be found in the Auth0 dashboard under `settings`.
-- `NEXT_PUBLIC_AUTH0_ADMIN_ID`: Buraya admin olan kullanıcının **user_id** değeri yazılmalıdır.
-    - Bu bilgiye uygulamayı çalıştırdıktan sonra eklemeniz gerekir. Daha sonra **"User Management > Users"** altından kendi profilinize ait sayfadan **user_id** bilgisine erişebilirsiniz.
-
+- `NEXT_PUBLIC_AUTH0_ADMIN_ID`: This is the  **user_id** of the admin user. First run your application and sign-in yourself. Then find your **user_id** int Auth0 console, **"User Management > Users"** page.
 
 ## Deploy Your Local Project
 
