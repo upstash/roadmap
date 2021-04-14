@@ -1,8 +1,8 @@
-# Roadmap Voting App Version-2 
+# Roadmap Voting App 
 
 You can deploy Roadmap application yourself and get feedback from your users about your roadmap features. 
 
-In version-2, the users should sign up (via Auth0) to add new features and vote them up. If you prefer the one without authentication, see the [old version](https://github.com/vercel/next.js/tree/canary/examples/with-redis). Also you can configure yourself as admin, to set a feature request as `released` also delete any feature request.  
+In this version, the user should sign up (via Auth0) to add a new feature and vote them up. If you prefer the one without authentication, see the [old version](https://github.com/vercel/next.js/tree/canary/examples/with-redis). Also you can configure yourself as admin, to set a feature request as `released` also delete any feature request.  
 
 
 
