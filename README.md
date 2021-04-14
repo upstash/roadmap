@@ -48,8 +48,13 @@ cp .env.local.example .env.local
 - `NEXT_PUBLIC_AUTH0_CLIENT_ID`: Can be found in the Auth0 dashboard under `settings`.
 - `NEXT_PUBLIC_AUTH0_ADMIN_ID`: This is the  **user_id** of the admin user. First run your application and sign-in yourself. Then find your **user_id** int Auth0 console, **"User Management > Users"** page.
 
-## Deploy Your Local Project
+#### Replace Your Logo
+Copy your logo image to `public` folder. Then edit `components/header/index.js`.
 
-To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=upstash-roadmap).
+## Deploy Your Project
+
+To deploy your project to Vercel, run `vercel` in the project folder. 
+
+Or you can push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=upstash-roadmap).
 
 **Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match your `.env.local` file.
