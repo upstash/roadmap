@@ -9,15 +9,15 @@ If you prefer the one without authentication, see the [old version](https://gith
 ![](https://github.com/upstash/roadmap/blob/main/public/ss.png)
 
 ## Docs
-- [Set up](#set-up-environment-variables)
+- [Set up](#set-up)
 - [Configuring Upstash](#configuring-upstash)
 - [Configuring Auth0](#configuring-auth0)
 - [Deploy on Vercel](#deploy-your-local-project)
 
 
-## Set up environment variables
+## Set up
 
-Copy the `.env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
+First clone the repo. Copy the `.env.local.example` file to `.env.local` (which will be ignored by Git):
 
 ```bash
 cp .env.local.example .env.local
@@ -48,8 +48,14 @@ cp .env.local.example .env.local
 - `NEXT_PUBLIC_AUTH0_CLIENT_ID`: Can be found in the Auth0 dashboard under `settings`.
 - `NEXT_PUBLIC_AUTH0_ADMIN_ID`: This is the  **user_id** of the admin user. First run your application and sign-in yourself. Then find your **user_id** in the Auth0 console, **"User Management > Users"** page.
 
-#### Replace Your Logo
+## Replace Your Logo
 Copy your logo image to `public` folder. Then edit `components/header/index.js`.
+
+## Run Your Project
+In the project folder, run:
+`npm install`
+`next dev`
+
 
 ## Deploy Your Project
 
