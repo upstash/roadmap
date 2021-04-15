@@ -12,14 +12,7 @@ export default authenticate(async (req, res) => {
       error: 'You need to be admin'
     })
   }
-
   await redis.zrem(DB_NAME, key)
-  await redis.zadd(
-    'roadmap',
-    'NX',
-    score,
-    JSON.stringify({ title, createdAt, user, status: FEATURE_TYPE.RELEASED })
-  )
 
   res.json({ body: 'success' })
 })

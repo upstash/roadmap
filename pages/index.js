@@ -55,6 +55,28 @@ function Home() {
       })
   })
 
+  const onRemove = getToken(async (token, item) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        authorization: token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(item)
+    }
+    fetch('api/remove', requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          toast.error(data.error)
+        } else {
+          mutate()
+        }
+      })
+  })
+
+
+
   const onVote = getToken(async (token, item) => {
     const requestOptions = {
       method: 'POST',
@@ -110,6 +132,7 @@ function Home() {
           dataLoading={isValidating}
           onVote={onVote}
           onPublish={onPublish}
+          onRemove={onRemove}
         />
       </div>
     </main>

@@ -2,10 +2,12 @@ import FeatureCardNew from '../feature-card/new'
 import FeatureCardSkeleton from '../feature-card/skeleton'
 import FeatureCardReleased from '../feature-card/released'
 import { FEATURE_TYPE } from '../../lib/const'
+import { useAuth0 } from '@auth0/auth0-react'
 
-export default function FeatureList({ dataLoading, data, onVote, onPublish }) {
+export default function FeatureList({ dataLoading, data, onVote, onPublish, onRemove  }) {
   const NEW_DATA = data[FEATURE_TYPE.NEW]
   const RELEASED_DATA = data[FEATURE_TYPE.RELEASED]
+
 
   if (dataLoading) {
     return (
@@ -17,16 +19,20 @@ export default function FeatureList({ dataLoading, data, onVote, onPublish }) {
     )
   }
 
+  const auth = useAuth0();
+
   return (
     <>
       <div className="space-y-6">
         {NEW_DATA.length > 0 ? (
           NEW_DATA.map((item, index) => (
             <FeatureCardNew
+              admin={auth?.user?.sub}
               key={index}
               item={item}
               onVote={onVote}
               onPublish={onPublish}
+              onRemove={onRemove}
             />
           ))
         ) : (
