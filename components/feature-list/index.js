@@ -12,13 +12,15 @@ export default function FeatureList({
   onPublish,
   onRemove
 }) {
+  const auth = useAuth0()
+
   const NEW_DATA = data[FEATURE_TYPE.NEW]
   const RELEASED_DATA = data[FEATURE_TYPE.RELEASED]
   const [showAll, showAllSet] = useState(false)
 
   const MAX_SHOW_DATA = 6
   const HAS_HIDE_DATA = NEW_DATA.length > MAX_SHOW_DATA
-  const SHOW_DATA = showAll ? NEW_DATA : [...NEW_DATA].splice(0, MAX_SHOW_DATA)
+  const SHOW_DATA = showAll ? NEW_DATA : NEW_DATA.slice(0, MAX_SHOW_DATA)
 
   if (dataLoading) {
     return (
@@ -29,8 +31,6 @@ export default function FeatureList({
       </div>
     )
   }
-
-  const auth = useAuth0()
 
   return (
     <>
