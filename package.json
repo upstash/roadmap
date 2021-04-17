@@ -9,6 +9,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^1.4.0",
     "@tailwindcss/forms": "^0.3.2",
+    "classnames": "^2.3.1",
     "ioredis": "^4.25.0",
     "lodash.groupby": "^4.6.0",
     "luxon": "^1.26.0",

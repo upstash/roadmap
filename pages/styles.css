@@ -8,6 +8,10 @@
   }
 
   .button {
-    @apply bg-black text-white px-4 py-2 rounded;
+    @apply bg-black text-white px-4 py-2 rounded hover:opacity-60;
+  }
+
+  .button-secondary {
+    @apply bg-white text-gray-600 border px-4 py-2 rounded hover:opacity-60;
   }
 }

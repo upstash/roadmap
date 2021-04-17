@@ -3,6 +3,7 @@ import FeatureCardSkeleton from '../feature-card/skeleton'
 import FeatureCardReleased from '../feature-card/released'
 import { FEATURE_TYPE } from '../../lib/const'
 import { useAuth0 } from '@auth0/auth0-react'
+import { useState } from 'react'
 
 export default function FeatureList({
   dataLoading,
@@ -13,6 +14,11 @@ export default function FeatureList({
 }) {
   const NEW_DATA = data[FEATURE_TYPE.NEW]
   const RELEASED_DATA = data[FEATURE_TYPE.RELEASED]
+  const [showAll, showAllSet] = useState(false)
+
+  const MAX_SHOW_DATA = 10
+  const HAS_HIDE_DATA = NEW_DATA.length > MAX_SHOW_DATA
+  const SHOW_DATA = showAll ? NEW_DATA : [...NEW_DATA].splice(0, MAX_SHOW_DATA)
 
   if (dataLoading) {
     return (
@@ -28,18 +34,32 @@ export default function FeatureList({
 
   return (
     <>
-      <div className="space-y-6">
+      <div>
         {NEW_DATA.length > 0 ? (
-          NEW_DATA.map((item, index) => (
-            <FeatureCardNew
-              admin={auth?.user?.sub}
-              key={index}
-              item={item}
-              onVote={onVote}
-              onPublish={onPublish}
-              onRemove={onRemove}
-            />
-          ))
+          <div className="space-y-6">
+            {/* first 10 item */}
+            {SHOW_DATA.map((item, index) => (
+              <FeatureCardNew
+                admin={auth?.user?.sub}
+                key={index}
+                item={item}
+                onVote={onVote}
+                onPublish={onPublish}
+                onRemove={onRemove}
+              />
+            ))}
+            {/* show all */}
+            <button
+              className="button-secondary"
+              type="button"
+              hidden={!HAS_HIDE_DATA || showAll}
+              onClick={() => {
+                showAllSet(true)
+              }}
+            >
+              Show all features
+            </button>
+          </div>
         ) : (
           <div className="text-center text-gray-400">
             <p>Empty state 👻</p>
