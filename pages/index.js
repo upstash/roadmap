@@ -75,8 +75,6 @@ function Home() {
       })
   })
 
-
-
   const onVote = getToken(async (token, item) => {
     const requestOptions = {
       method: 'POST',

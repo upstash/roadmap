@@ -4,10 +4,15 @@ import FeatureCardReleased from '../feature-card/released'
 import { FEATURE_TYPE } from '../../lib/const'
 import { useAuth0 } from '@auth0/auth0-react'
 
-export default function FeatureList({ dataLoading, data, onVote, onPublish, onRemove  }) {
+export default function FeatureList({
+  dataLoading,
+  data,
+  onVote,
+  onPublish,
+  onRemove
+}) {
   const NEW_DATA = data[FEATURE_TYPE.NEW]
   const RELEASED_DATA = data[FEATURE_TYPE.RELEASED]
-
 
   if (dataLoading) {
     return (
@@ -19,7 +24,7 @@ export default function FeatureList({ dataLoading, data, onVote, onPublish, onRe
     )
   }
 
-  const auth = useAuth0();
+  const auth = useAuth0()
 
   return (
     <>
