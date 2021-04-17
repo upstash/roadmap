@@ -16,7 +16,7 @@ export default function FeatureList({
   const RELEASED_DATA = data[FEATURE_TYPE.RELEASED]
   const [showAll, showAllSet] = useState(false)
 
-  const MAX_SHOW_DATA = 10
+  const MAX_SHOW_DATA = 6
   const HAS_HIDE_DATA = NEW_DATA.length > MAX_SHOW_DATA
   const SHOW_DATA = showAll ? NEW_DATA : [...NEW_DATA].splice(0, MAX_SHOW_DATA)
 

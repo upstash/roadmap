@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <header className="pt-10 mb-16">
+    <header className="pt-10 mb-10">
       <div className="flex justify-center">
         <img src="/upstash.svg" alt="Upstash" width={140} />
       </div>
