@@ -4,14 +4,13 @@ import { useAuth0 } from '@auth0/auth0-react'
 import FeatureList from '../components/feature-list'
 import FeatureForm from '../components/feature-form'
 import useSWR from 'swr'
-import fetcher from '../lib/fetcher'
 import { FEATURE_TYPE } from '../lib/const'
 
 function Home() {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0()
   const inputNewFeature = useRef()
 
-  const { data, isValidating, mutate } = useSWR('api/list', fetcher, {
+  const { data, isValidating, mutate } = useSWR('api/list', {
     initialData: { [FEATURE_TYPE.NEW]: [], [FEATURE_TYPE.RELEASED]: [] },
     revalidateOnMount: true,
     revalidateOnFocus: false
