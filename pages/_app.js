@@ -16,7 +16,6 @@ export default function MyApp({ Component, pageProps }) {
     >
       <Head>
         <title>Roadmap Voting</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className="antialiased max-w-xl mx-auto px-4">
