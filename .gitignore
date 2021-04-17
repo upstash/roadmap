@@ -8,3 +8,5 @@ public/workbox*
 out/
 .env
 .env.local
+
+.vercel
