@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 
-export default function FeatureCardNew({
+export default function FeatureNewCard({
   item,
   onVote,
   onPublish,
