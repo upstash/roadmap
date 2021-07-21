@@ -1,6 +1,6 @@
-import FeatureCardNew from '../feature-card/new'
-import FeatureCardSkeleton from '../feature-card/skeleton'
-import FeatureCardReleased from '../feature-card/released'
+import FeatureNewCard from '../feature-new-card'
+import FeatureNewSkeletonCard from '../feature-new-card/skeleton'
+import FeatureReleaseCard from '../feature-release-card'
 import { FEATURE_TYPE } from '../../lib/const'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useState } from 'react'
@@ -26,7 +26,7 @@ export default function FeatureList({
     return (
       <div className="space-y-6">
         {[1, 2, 3, 4].map((_, index) => (
-          <FeatureCardSkeleton key={index} />
+          <FeatureNewSkeletonCard key={index} />
         ))}
       </div>
     )
@@ -39,7 +39,7 @@ export default function FeatureList({
           <div className="space-y-6">
             {/* first 10 item */}
             {SHOW_DATA.map((item, index) => (
-              <FeatureCardNew
+              <FeatureNewCard
                 admin={auth?.user?.sub}
                 key={index}
                 item={item}
@@ -74,7 +74,7 @@ export default function FeatureList({
           <h2 className="font-bold">Released</h2>
           <div className="mt-4 space-y-2">
             {RELEASED_DATA.map((item, index) => (
-              <FeatureCardReleased key={index} item={item} />
+              <FeatureReleaseCard key={index} item={item} />
             ))}
           </div>
         </div>

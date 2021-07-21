@@ -1,7 +1,6 @@
 import { DateTime } from 'luxon'
-import cn from 'classnames'
 
-export default function FeatureCardNew({
+export default function FeatureNewCard({
   item,
   onVote,
   onPublish,
@@ -50,10 +49,13 @@ export default function FeatureCardNew({
         <h3 className="text-lg font-bold">{title}</h3>
 
         <div className="flex items-center space-x-1 text-gray-400">
-          <span>{user.name}</span>
-          <span>•</span>
+          {user.name && (
+            <>
+              <span>{user.name}</span>
+              <span>•</span>
+            </>
+          )}
           <span>{DateTime.fromMillis(createdAt).toRelative()}</span>
-
           {process.env.NEXT_PUBLIC_AUTH0_ADMIN_ID === admin && (
             <>
               <span>•</span>

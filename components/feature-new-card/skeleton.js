@@ -1,4 +1,4 @@
-export default function FeatureCardSkeleton() {
+export default function FeatureNewSkeletonCard() {
   return (
     <article className="flex items-center space-x-4 text-gray-100">
       <div className="flex flex-col items-center bg-gray-100 h-12 w-10 rounded" />
