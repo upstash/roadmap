@@ -2,7 +2,7 @@
 
 ![](https://github.com/upstash/roadmap/blob/main/public/ss.png)
 
-You can deploy Roadmap application yourself and get feedback from your users about your roadmap features. See the [live example](https://roadmap.upstash.com).
+You can deploy Roadmap application yourself and ask your users to vote for your roadmap features. See the [live example](https://roadmap.upstash.com).
 
 In this version, the user should sign up (via Auth0) to add a new feature and vote them up. Also you can configure yourself as admin, to set a feature request as `released` also delete any feature request.  
 
