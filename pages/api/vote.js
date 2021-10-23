@@ -1,19 +1,24 @@
-import { authenticate, redis } from '../../lib/utils'
-import { DB_NAME } from '../../lib/const'
+import { authenticate } from '../../lib/utils';
+import { DB_NAME } from '../../lib/const';
+import { sadd, zincrby } from '@upstash/redis';
 
 export default authenticate(async (req, res) => {
-  const { title, createdAt, user, status } = req.body
+  try {
+    const { title, createdAt, user, status } = req.body;
 
-  const key = JSON.stringify({ title, createdAt, user, status })
-  if (!key) return res.status(400).json({ error: 'Invalid parameters' })
+    const FEATURE = JSON.stringify({ title, createdAt, user, status });
 
-  let c = await redis.sadd('s:' + key, req.user.sub)
-  if (c === 0) {
-    return res.json({
-      error: 'You can not vote an item multiple times'
-    })
+    const { data: saddData, error: saddError } = await sadd('s:' + FEATURE, [
+      req.user.sub,
+    ]);
+    if (saddData === 0) throw 'You can not vote an item multiple times';
+    if (saddError) throw saddError;
+
+    const { data, error } = await zincrby(DB_NAME, 1, FEATURE);
+    if (error) throw error;
+
+    res.json(data);
+  } catch (error) {
+    res.status(400).json({ error });
   }
-
-  let v = await redis.zincrby(DB_NAME, 1, key)
-  res.json(v)
-})
+});

@@ -10,5 +10,5 @@ export default function Header() {
         <p>Vote up the features you want to see in the next release.</p>
       </div>
     </header>
-  )
+  );
 }

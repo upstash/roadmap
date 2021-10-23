@@ -1,29 +1,35 @@
 {
   "name": "upstash-roadmap",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@auth0/auth0-react": "^1.4.0",
-    "@tailwindcss/forms": "^0.3.2",
+    "@auth0/auth0-react": "^1.8.0",
+    "@tailwindcss/forms": "^0.3.4",
+    "@upstash/redis": "^0.1.0-beta.1",
     "classnames": "^2.3.1",
-    "ioredis": "^4.25.0",
     "lodash.groupby": "^4.6.0",
-    "luxon": "^1.26.0",
-    "next": "^10.1.3",
+    "luxon": "^1.28.0",
+    "next": "^11.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-toastify": "^6.2.0",
-    "swr": "^0.5.5",
-    "yup": "^0.32.9"
+    "swr": "^1.0.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.5",
-    "postcss": "^8.2.9",
-    "prettier": "^2.2.1",
-    "tailwindcss": "^2.1.0"
+    "autoprefixer": "^10.3.7",
+    "postcss": "^8.3.11",
+    "prettier": "^2.4.1",
+    "tailwindcss": "^2.2.17"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
   }
 }

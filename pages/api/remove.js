@@ -1,18 +1,25 @@
-import { authenticate, redis } from '../../lib/utils'
-import { DB_NAME } from '../../lib/const'
+import { authenticate } from '../../lib/utils';
+import { DB_NAME } from '../../lib/const';
+import { zrem } from '@upstash/redis';
 
 export default authenticate(async (req, res) => {
-  const { title, createdAt, user, status } = req.body
+  try {
+    if (req.user.sub !== process.env.NEXT_PUBLIC_AUTH0_ADMIN_ID) {
+      throw 'You need to be admin';
+    }
 
-  const key = JSON.stringify({ title, createdAt, user, status })
-  if (!key) return res.status(400).json({ error: 'Invalid parameters' })
+    const { title, createdAt, user, status } = req.body;
+    const FEATURE = JSON.stringify({ title, createdAt, user, status });
 
-  if (req.user.sub !== process.env.NEXT_PUBLIC_AUTH0_ADMIN_ID) {
-    return res.status(400).json({
-      error: 'You need to be admin'
-    })
+    const { data: zremData, error: zremError } = await zrem(
+      DB_NAME,
+      JSON.stringify(FEATURE)
+    );
+    if (zremData === 0) throw 'Invalid parameters';
+    if (zremError) throw zremError;
+
+    res.json({ body: 'success' });
+  } catch (error) {
+    res.status(400).json({ error });
   }
-  await redis.zrem(DB_NAME, key)
-
-  res.json({ body: 'success' })
-})
+});

@@ -14,5 +14,5 @@ export default function FeatureNewSkeletonCard() {
         </div>
       </div>
     </article>
-  )
+  );
 }

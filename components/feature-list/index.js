@@ -1,26 +1,26 @@
-import FeatureNewCard from '../feature-new-card'
-import FeatureNewSkeletonCard from '../feature-new-card/skeleton'
-import FeatureReleaseCard from '../feature-release-card'
-import { FEATURE_TYPE } from '../../lib/const'
-import { useAuth0 } from '@auth0/auth0-react'
-import { useState } from 'react'
+import FeatureNewCard from '../feature-new-card';
+import FeatureNewSkeletonCard from '../feature-new-card/skeleton';
+import FeatureReleaseCard from '../feature-release-card';
+import { FEATURE_TYPE } from '../../lib/const';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useState } from 'react';
 
 export default function FeatureList({
   dataLoading,
   data,
   onVote,
   onPublish,
-  onRemove
+  onRemove,
 }) {
-  const auth = useAuth0()
+  const auth = useAuth0();
 
-  const NEW_DATA = data[FEATURE_TYPE.NEW]
-  const RELEASED_DATA = data[FEATURE_TYPE.RELEASED]
-  const [showAll, showAllSet] = useState(false)
+  const NEW_DATA = data[FEATURE_TYPE.REQUEST];
+  const RELEASED_DATA = data[FEATURE_TYPE.RELEASED];
+  const [showAll, showAllSet] = useState(false);
 
-  const MAX_SHOW_DATA = 10
-  const HAS_HIDE_DATA = NEW_DATA.length > MAX_SHOW_DATA
-  const SHOW_DATA = showAll ? NEW_DATA : NEW_DATA.slice(0, MAX_SHOW_DATA)
+  const MAX_SHOW_DATA = 10;
+  const HAS_HIDE_DATA = NEW_DATA.length > MAX_SHOW_DATA;
+  const SHOW_DATA = showAll ? NEW_DATA : NEW_DATA.slice(0, MAX_SHOW_DATA);
 
   if (dataLoading) {
     return (
@@ -29,7 +29,7 @@ export default function FeatureList({
           <FeatureNewSkeletonCard key={index} />
         ))}
       </div>
-    )
+    );
   }
 
   return (
@@ -54,7 +54,7 @@ export default function FeatureList({
               type="button"
               hidden={!HAS_HIDE_DATA || showAll}
               onClick={() => {
-                showAllSet(true)
+                showAllSet(true);
               }}
             >
               Show all features
@@ -80,5 +80,5 @@ export default function FeatureList({
         </div>
       )}
     </>
-  )
+  );
 }

@@ -10,5 +10,5 @@ export default function Footer() {
         Create your own Roadmap Voting App with Upstash and Redis.
       </a>
     </footer>
-  )
+  );
 }

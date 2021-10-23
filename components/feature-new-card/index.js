@@ -1,25 +1,25 @@
-import { DateTime } from 'luxon'
+import { DateTime } from 'luxon';
 
 export default function FeatureNewCard({
   item,
   onVote,
   onPublish,
   onRemove,
-  admin
+  admin,
 }) {
-  const { score, title, createdAt, user } = item
+  const { score, title, createdAt, user } = item;
 
   const publish = () => {
     if (confirm('Feature will be released. Are you sure?')) {
-      onPublish(item)
+      onPublish(item);
     }
-  }
+  };
 
   const remove = () => {
     if (confirm('Feature will be removed. Are you sure?')) {
-      onRemove(item)
+      onRemove(item);
     }
-  }
+  };
 
   return (
     <article className="flex items-center space-x-4">
@@ -83,5 +83,5 @@ export default function FeatureNewCard({
         </div>
       </div>
     </article>
-  )
+  );
 }
