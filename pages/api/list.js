@@ -23,8 +23,8 @@ module.exports = async (req, res) => {
 
     const dataGroupBy = groupby(result, 'status');
 
-    if (!dataGroupBy[FEATURE_TYPE.REQUEST]) {
-      dataGroupBy[FEATURE_TYPE.REQUEST] = [];
+    if (!dataGroupBy[FEATURE_TYPE.NEW]) {
+      dataGroupBy[FEATURE_TYPE.NEW] = [];
     }
     if (!dataGroupBy[FEATURE_TYPE.RELEASED]) {
       dataGroupBy[FEATURE_TYPE.RELEASED] = [];

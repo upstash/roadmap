@@ -20,7 +20,7 @@ export default authenticate(async (req, res) => {
       title,
       createdAt: Date.now(),
       user,
-      status: FEATURE_TYPE.REQUEST,
+      status: FEATURE_TYPE.NEW,
     };
 
     const { error } = await zadd(DB_NAME, [0, JSON.stringify(FEATURE)], {

@@ -11,7 +11,7 @@ function Home() {
   const inputNewFeature = useRef();
 
   const { data, isValidating, mutate } = useSWR('api/list', {
-    fallbackData: { [FEATURE_TYPE.REQUEST]: [], [FEATURE_TYPE.RELEASED]: [] },
+    fallbackData: { [FEATURE_TYPE.NEW]: [], [FEATURE_TYPE.RELEASED]: [] },
   });
 
   const getToken = (func) => {

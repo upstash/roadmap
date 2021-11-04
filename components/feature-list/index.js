@@ -14,7 +14,7 @@ export default function FeatureList({
 }) {
   const auth = useAuth0();
 
-  const NEW_DATA = data[FEATURE_TYPE.REQUEST];
+  const NEW_DATA = data[FEATURE_TYPE.NEW];
   const RELEASED_DATA = data[FEATURE_TYPE.RELEASED];
   const [showAll, showAllSet] = useState(false);
 
