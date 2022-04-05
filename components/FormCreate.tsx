@@ -1,15 +1,15 @@
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react'
 
-export default function FeatureForm({ onSubmitNewFeature, inputNewFeature }) {
+export default function FormCreate({ onSubmitNewFeature, inputNewFeature }) {
   const { user, isLoading, isAuthenticated, loginWithRedirect, logout } =
-    useAuth0();
+    useAuth0()
 
   const onSubmit = (e) => {
-    e.preventDefault();
-    onSubmitNewFeature();
-  };
+    e.preventDefault()
+    onSubmitNewFeature()
+  }
 
-  if (isLoading) return null;
+  if (isLoading) return null
 
   return isAuthenticated ? (
     <form className="flex items-center space-x-4" onSubmit={onSubmit}>
@@ -37,5 +37,5 @@ export default function FeatureForm({ onSubmitNewFeature, inputNewFeature }) {
         Login
       </button>
     </div>
-  );
+  )
 }

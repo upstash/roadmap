@@ -1,5 +1,5 @@
-export default function FeatureReleaseCard({ item }) {
-  const { score, title } = item;
+export default function CardRelease({ item }) {
+  const { score, title } = item
 
   return (
     <article className="flex items-center space-x-4">
@@ -11,5 +11,5 @@ export default function FeatureReleaseCard({ item }) {
       </div>
       <h5>{title}</h5>
     </article>
-  );
+  )
 }

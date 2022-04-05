@@ -1,10 +1,10 @@
 # Roadmap Voting App
 
-![](https://github.com/upstash/roadmap/blob/main/public/ss.png)
+![](https://github.com/upstash/roadmap/blob/main/ss.png)
 
 You can deploy Roadmap application yourself and ask your users to vote for your roadmap features. See the [live example](https://roadmap.upstash.com).
 
-In this version, the user should sign up (via Auth0) to add a new feature and vote them up. Also you can configure yourself as admin, to set a feature request as `released` also delete any feature request.
+In this version, the user should sign up (via Auth0) to add a new feature and vote them up. Also you can configure yourself as admin, to set a feature request as `release` also delete any feature request.
 
 If you prefer the one without authentication, see the [old version](https://github.com/vercel/next.js/tree/canary/examples/with-redis).
 
@@ -48,7 +48,7 @@ cp .env.local.example .env.local
 
 ## Replace Your Logo
 
-Copy your logo image to `public` folder. Then edit `components/header/index.js`.
+Copy your logo image to `public` folder. Then edit `components/Header.tsx`.
 
 ## Run Your Project
 
