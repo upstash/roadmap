@@ -15,10 +15,13 @@ export default function List({
 }) {
   const auth = useAuth0()
 
-  const NEW_DATA = data.filter((item) => item.status === FEATURE_TYPE.NEW)
-  const RELEASE_DATA = data.filter(
-    (item) => item.status === FEATURE_TYPE.RELEASE
-  )
+  const NEW_DATA = data
+    .filter((item) => item.status === FEATURE_TYPE.NEW)
+    .sort((a, b) => b.score - a.score)
+
+  const RELEASE_DATA = data
+    .filter((item) => item.status === FEATURE_TYPE.RELEASE)
+    .sort((a, b) => b.createdAt - a.createdAt)
 
   const [showAll, showAllSet] = useState(false)
 
@@ -43,10 +46,10 @@ export default function List({
         {NEW_DATA.length > 0 ? (
           <div className="space-y-6">
             {/* first 10 item */}
-            {SHOW_DATA.map((item) => (
+            {SHOW_DATA.map((item, index) => (
               <CardNew
                 admin={auth?.user?.sub}
-                key={item.createdAt}
+                key={index}
                 item={item}
                 onVote={onVote}
                 onPublish={onPublish}
@@ -78,8 +81,8 @@ export default function List({
         <div className="mt-10">
           <h2 className="font-bold">Release</h2>
           <div className="mt-4 space-y-2">
-            {RELEASE_DATA.map((item) => (
-              <CardRelease key={item.createdAt} item={item} />
+            {RELEASE_DATA.map((item, index) => (
+              <CardRelease key={index} item={item} />
             ))}
           </div>
         </div>
