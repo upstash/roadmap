@@ -10,6 +10,7 @@ specifiers:
   autoprefixer: ^10.4.4
   luxon: ^2.3.1
   next: ^12.1.4
+  next-themes: ^0.1.1
   postcss: ^8.4.12
   prettier: ^2.6.2
   react: 18.0.0
@@ -26,6 +27,7 @@ dependencies:
   '@upstash/redis': 1.0.3
   luxon: 2.3.1
   next: 12.1.4_react-dom@18.0.0+react@18.0.0
+  next-themes: 0.1.1_c0abbb53577d424fe320649841fdc7d4
   react: 18.0.0
   react-dom: 18.0.0_react@18.0.0
   react-toastify: 7.0.4_react-dom@18.0.0+react@18.0.0
@@ -711,6 +713,18 @@ packages:
     resolution: {integrity: sha512-CuHBogktKwpm5g2sRgv83jEy2ijFzBwMoYA60orPDR7ynsLijJDqgsi4RDGj3OJpy3Ieb+LYwiRmIOGyytgITA==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /next-themes/0.1.1_c0abbb53577d424fe320649841fdc7d4:
+    resolution: {integrity: sha512-Iqxt6rhS/KfK/iHJ0tfFjTcdLEAI0AgwFuAFrMwLOPK5e+MI3I+fzyvBoS+VaOS+NldUiazurhgwYhrfV0VXsQ==}
+    peerDependencies:
+      next: '>=11.1.1'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 12.1.4_react-dom@18.0.0+react@18.0.0
+      react: 18.0.0
+      react-dom: 18.0.0_react@18.0.0
+    dev: false
 
   /next/12.1.4_react-dom@18.0.0+react@18.0.0:
     resolution: {integrity: sha512-DA4g97BM4Z0nKtDvCTm58RxdvoQyYzeg0AeVbh0N4Y/D8ELrNu47lQeEgRGF8hV4eQ+Sal90zxrJQQG/mPQ8CQ==}

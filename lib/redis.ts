@@ -1,7 +1,7 @@
 import { Redis } from '@upstash/redis'
 
 export const databaseName =
-  process.env.NODE_ENV === 'development' ? 'roadmap-dev' : 'roadmap'
+  process.env.NODE_ENV === 'development' ? 'roadmap' : 'roadmap'
 
 const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL,

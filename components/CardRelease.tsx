@@ -4,8 +4,8 @@ export default function CardRelease({ item }) {
   return (
     <article className="flex items-center space-x-4">
       <div
-        className="
-        flex flex-col items-center bg-gray-200 py-1 w-10 rounded"
+        className="flex flex-col items-center bg-zinc-200 py-1 w-10 rounded
+      dark:bg-zinc-700"
       >
         <span className="font-bold text-sm">{score}</span>
       </div>

@@ -26,7 +26,7 @@ class MyDocument extends Document {
             type="image/png"
           />
         </Head>
-        <body>
+        <body className="dark:bg-zinc-900 dark:text-white">
           <Main />
           <NextScript />
         </body>

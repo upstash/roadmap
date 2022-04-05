@@ -15,7 +15,7 @@ export default function FormCreate({ onSubmitNewFeature, inputNewFeature }) {
     <form className="flex items-center space-x-4" onSubmit={onSubmit}>
       <img src={user.picture} alt={user.name} width={40} className="rounded" />
       <input
-        className="input"
+        className="form-input"
         type="text"
         ref={inputNewFeature}
         placeholder="Enter a new feature request?"
@@ -27,10 +27,13 @@ export default function FormCreate({ onSubmitNewFeature, inputNewFeature }) {
       )*/}
     </form>
   ) : (
-    <div className="flex flex-col items-center space-y-2 bg-green-50 text-green-800 px-3 py-6 rounded">
+    <div
+      className="flex flex-col items-center bg-zinc-100 px-3 py-6 rounded
+    dark:bg-zinc-800"
+    >
       <p>Please login to request or vote for a new feature</p>
       <button
-        className="button bg-green-700"
+        className="button mt-4"
         type="button"
         onClick={() => loginWithRedirect()}
       >

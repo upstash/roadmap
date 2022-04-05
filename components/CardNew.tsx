@@ -19,8 +19,9 @@ export default function CardNew({ item, onVote, onPublish, onRemove, admin }) {
     <article className="flex items-center space-x-4">
       <button
         className="
-        flex flex-col items-center border border-gray-300 py-1 w-10 rounded
-        hover:bg-gray-100"
+        flex flex-col items-center border border-zinc-300 py-1 w-10 rounded
+        hover:bg-zinc-100
+        dark:border-zinc-700 dark:hover:bg-zinc-700"
         onClick={() => onVote(item)}
       >
         <svg
@@ -42,7 +43,7 @@ export default function CardNew({ item, onVote, onPublish, onRemove, admin }) {
       <div>
         <h3 className="text-lg font-bold">{title}</h3>
 
-        <div className="flex items-center space-x-1 text-gray-400">
+        <div className="flex items-center space-x-1 text-dimmed">
           {user.name && (
             <>
               <span>{user.name}</span>
@@ -56,7 +57,7 @@ export default function CardNew({ item, onVote, onPublish, onRemove, admin }) {
               <button
                 type="button"
                 onClick={publish}
-                className="hover:text-gray-800 hover:underline"
+                className="hover:underline"
               >
                 Release
               </button>
@@ -68,7 +69,7 @@ export default function CardNew({ item, onVote, onPublish, onRemove, admin }) {
               <button
                 type="button"
                 onClick={remove}
-                className="hover:text-gray-800 hover:underline"
+                className="hover:underline"
               >
                 Remove
               </button>

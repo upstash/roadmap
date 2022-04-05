@@ -58,7 +58,7 @@ export default function List({
             ))}
             {/* show all */}
             <button
-              className="button-secondary"
+              className="button-ghost"
               type="button"
               hidden={!HAS_HIDE_DATA || showAll}
               onClick={() => {
@@ -69,7 +69,7 @@ export default function List({
             </button>
           </div>
         ) : (
-          <div className="text-center text-gray-400">
+          <div className="text-center text-zinc-400">
             <p>Empty state 👻</p>
           </div>
         )}

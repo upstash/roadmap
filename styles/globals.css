@@ -2,16 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .text-dimmed {
+    @apply text-zinc-500 dark:text-zinc-500
+  }
+}
+
 @layer components {
-  .input {
-    @apply block w-full rounded border-gray-300 shadow-sm focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50;
+  .form-select {
+    @apply border-zinc-300 bg-transparent rounded
+    dark:border-zinc-600
+  }
+
+
+  .form-input {
+    @apply block w-full bg-transparent border-zinc-300 rounded shadow-sm
+    dark:bg-zinc-800 dark:border-zinc-600
   }
 
   .button {
-    @apply bg-black text-white px-4 py-2 rounded hover:opacity-60;
+    @apply bg-zinc-800 text-white px-4 py-2 rounded
+    hover:opacity-60
+    dark:bg-white dark:text-zinc-900
   }
 
-  .button-secondary {
-    @apply bg-white text-gray-600 border px-4 py-2 rounded hover:opacity-60;
+  .button-ghost {
+    @apply bg-transparent border px-4 py-2 rounded
+    hover:opacity-60
+    dark:border-zinc-600
   }
 }

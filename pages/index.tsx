@@ -115,12 +115,13 @@ function Home() {
   })
 
   return (
-    <main>
+    <>
       <FormCreate
         onSubmitNewFeature={onSubmitNewFeature}
         inputNewFeature={inputNewFeature}
       />
-      <div className="mt-10">
+
+      <div className="mt-12">
         <List
           data={data}
           dataLoading={isValidating}
@@ -129,7 +130,7 @@ function Home() {
           onRemove={onRemove}
         />
       </div>
-    </main>
+    </>
   )
 }
 
