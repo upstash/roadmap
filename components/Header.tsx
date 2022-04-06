@@ -1,13 +1,13 @@
 import { useTheme } from 'next-themes'
 
 export default function Header() {
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
 
   return (
     <header className="pt-20 mb-12">
       <div className="flex justify-center">
         <img
-          src={theme === 'light' ? '/logo-light.svg' : '/logo-dark.svg'}
+          src={resolvedTheme === 'light' ? '/logo-light.svg' : '/logo-dark.svg'}
           alt="Upstash"
           width={140}
         />

@@ -1,7 +1,7 @@
 import { useTheme } from 'next-themes'
 
 export default function Footer() {
-  const { theme, setTheme } = useTheme()
+  const { theme, themes, setTheme } = useTheme()
 
   return (
     <footer
@@ -21,13 +21,15 @@ export default function Footer() {
 
       <div className="mt-6">
         <select
-          className="form-select py-2 text-sm leading-none"
+          className="form-select py-2 text-sm capitalize leading-none"
           value={theme}
           onChange={(e) => setTheme(e.target.value)}
         >
-          <option value="dark">Dark</option>
-          <option value="light">Light</option>
-          <option value="system">System</option>
+          {themes.map((theme: string) => (
+            <option key={theme} value={theme}>
+              {theme}
+            </option>
+          ))}
         </select>
       </div>
     </footer>
