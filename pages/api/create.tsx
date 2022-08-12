@@ -31,6 +31,6 @@ export default authenticate(async (req, res) => {
 
     res.json({ body: 'success' })
   } catch (error) {
-    res.status(400).json({ error })
+    res.status(400).json( { error: error.message } )
   }
 })
