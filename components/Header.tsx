@@ -7,7 +7,7 @@ export default function Header() {
     <header className="pt-20 mb-12">
       <div className="flex justify-center">
         <img
-          src={resolvedTheme === 'light' ? '/logo-light.svg' : '/logo-dark.svg'}
+          src={resolvedTheme === 'light' ? '/profile.jpg' : '/profile.jpg'}
           alt="Upstash"
           width={140}
         />
