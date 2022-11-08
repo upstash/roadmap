@@ -9,7 +9,7 @@ export default function ListReleased() {
     .filter((item) => item.status === FeatureStatus.Released)
     .sort((a, b) => b.createdAt - a.createdAt)
 
-  if (data.length === 0) return null
+  if (dataFilterAndSort.length === 0) return null
 
   return (
     <div>
