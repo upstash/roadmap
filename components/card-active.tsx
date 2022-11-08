@@ -36,7 +36,7 @@ export default function CardActive({ item }: { item: Feature }) {
         <span className="-mt-1 font-bold text-sm">{score}</span>
       </button>
 
-      <div>
+      <div className="flex-1">
         <h3 className="text-lg font-bold">{title}</h3>
 
         <div className="flex items-center space-x-1 text-dimmed">
