@@ -36,6 +36,36 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       { score: 0, member: JSON.stringify(newFeature) }
     )
 
+    if (process.env.WEBHOOK_URL) {
+      // post webhook message to slack
+      fetch(process.env.WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          blocks: [
+            {
+              type: 'context',
+              elements: [
+                {
+                  type: 'plain_text',
+                  text: 'New feature request:'
+                }
+              ]
+            },
+            {
+              type: 'section',
+              text: {
+                type: 'mrkdwn',
+                text: `*${title.trim()}*`
+              }
+            }
+          ]
+        })
+      })
+    }
+
     res.json({ body: 'success' })
   } catch (error) {
     res.status(400).json({ error: error.message })

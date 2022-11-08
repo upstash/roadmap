@@ -15,7 +15,6 @@ export const authOptions = {
   ],
   callbacks: {
     async session(session) {
-      console.log(session)
       return {
         ...session.session,
         user: {
