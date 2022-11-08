@@ -15,12 +15,13 @@ export const authOptions = {
   ],
   callbacks: {
     async session(session) {
+      console.log(session)
       return {
         ...session.session,
         user: {
           ...session.user,
           role:
-            session.user.id === process.env.NEXT_PUBLIC_ADMIN_ID
+            session.user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL
               ? 'admin'
               : 'user'
         }

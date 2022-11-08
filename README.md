@@ -115,11 +115,9 @@ next dev
 
 ## `6` Let's make ourselves admin
 
-`NEXT_PUBLIC_ADMIN_ID`: This is the id of the admin user. First run your
-application and sign-in yourself. You can find your own user id when you create
-the first content.
+Only admin users can delete and release content.
 
-<img src="https://github.com/upstash/roadmap/blob/main/public/doc/admin.png" width="600">
+`NEXT_PUBLIC_ADMIN_EMAIL`: Enter your Github email address here.
 
 ## `7` Deploy to Vercel
 
