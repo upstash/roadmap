@@ -4,11 +4,11 @@ import 'react-toastify/dist/ReactToastify.css'
 import { SessionProvider } from 'next-auth/react'
 import { SWRConfig } from 'swr'
 import { ToastContainer } from 'react-toastify'
-import { GlobalStoreProvider } from '../store/'
+import { GlobalStoreProvider } from '@/store/index'
 import { ThemeProvider } from 'next-themes'
 import Head from 'next/head'
-import Footer from 'components/footer'
-import Header from 'components/header'
+import Footer from '@/components/footer'
+import Header from '@/components/header'
 
 export default function MyApp({
   Component,

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import redis, { databaseName } from 'lib/redis'
+import redis, { databaseName } from '@/lib/redis'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {

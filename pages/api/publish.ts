@@ -1,8 +1,8 @@
-import redis, { databaseName } from 'lib/redis'
+import redis, { databaseName } from '@/lib/redis'
 import { unstable_getServerSession } from 'next-auth/next'
 import { authOptions } from './auth/[...nextauth]'
 import { NextAuthOptions } from 'next-auth'
-import { FeatureStatus } from '../../store'
+import { FeatureStatus } from '@/store/index'
 
 export default async (req, res) => {
   const session = (await unstable_getServerSession(

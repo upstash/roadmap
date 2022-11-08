@@ -1,10 +1,10 @@
 import { string } from 'yup'
-import redis, { databaseName } from 'lib/redis'
+import redis, { databaseName } from '@/lib/redis'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { unstable_getServerSession } from 'next-auth/next'
 import { NextAuthOptions } from 'next-auth'
 import { authOptions } from './auth/[...nextauth]'
-import { FeatureStatus } from '../../store'
+import { FeatureStatus } from '@/store/index'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = (await unstable_getServerSession(

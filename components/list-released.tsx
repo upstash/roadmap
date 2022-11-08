@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import CardReleased from './card-released'
-import GlobalStoreContext, { Feature, FeatureStatus } from '../store'
+import GlobalStoreContext, { Feature, FeatureStatus } from '@/store/index'
 
 export default function ListReleased() {
   const { data } = useContext(GlobalStoreContext)

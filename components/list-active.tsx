@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import CardActive from './card-active'
 import CardActiveLoading from './card-active-loading'
-import GlobalStoreContext, { FeatureStatus } from '../store'
+import GlobalStoreContext, { FeatureStatus } from '@/store/index'
 
 export default function ListActive() {
   const { data, loadingData } = useContext(GlobalStoreContext)

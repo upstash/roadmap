@@ -1,5 +1,5 @@
 import { signIn, useSession } from 'next-auth/react'
-import GlobalStoreContext from '../store/'
+import GlobalStoreContext from '@/store/index'
 import { useContext, useState } from 'react'
 
 export default function CreateForm() {

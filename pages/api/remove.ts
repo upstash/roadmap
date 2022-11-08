@@ -1,4 +1,4 @@
-import redis, { databaseName } from 'lib/redis'
+import redis, { databaseName } from '@/lib/redis'
 import { unstable_getServerSession } from 'next-auth/next'
 import { NextAuthOptions } from 'next-auth'
 import { authOptions } from './auth/[...nextauth]'

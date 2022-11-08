@@ -1,6 +1,6 @@
-import CreateForm from 'components/create-form'
-import ListActive from 'components/list-active'
-import ListReleased from 'components/list-released'
+import CreateForm from '@/components/create-form'
+import ListActive from '@/components/list-active'
+import ListReleased from '@/components/list-released'
 
 function Home() {
   return (

@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import { useContext } from 'react'
-import GlobalStoreContext, { Feature } from '../store'
+import GlobalStoreContext, { Feature } from '@/store/index'
 import { useSession } from 'next-auth/react'
 
 export default function CardActive({ item }: { item: Feature }) {
