@@ -15,13 +15,13 @@ the [old version](https://github.com/vercel/next.js/tree/canary/examples/with-re
 
 ## Docs
 
-1) [Set up project](#set-up-project)
-2) [Configuring Environment Variables](#configuring-environment-variables)
-3) [Set up Database](#authentication)
-4) [Set up user authentication with next-auth](#authentication)
-5) [Run Your Project](#set-up-admin)
-6) [Let's make ourselves admin](#set-up-admin)
-7) [Deploy to Vercel](#deploy-to-vercel)
+1) [Set up project](#1-set-up-project)
+2) [Configuring Environment Variables](#2-configuring-environment-variables)
+3) [Set up Database](#3-set-up-upstash-redis)
+4) [Set up user authentication with next-auth](#4-set-up-user-authentication-with-next-auth)
+5) [Run Your Project](#5-run-your-project)
+6) [Let's make ourselves admin](#6-lets-make-ourselves-admin)
+7) [Deploy to Vercel](#7-deploy-to-vercel)
 
 ## 1) Set up project
 
@@ -52,6 +52,8 @@ cp .env.local.example .env.local
 
 Go to the [Upstash Console](https://console.upstash.com/) and create a new
 database
+
+#### Upstash environment
 
 `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` find the variables in
 the database details page in Upstash Console.
@@ -118,3 +120,9 @@ application and sign-in yourself. You can find your own user id when you create
 the first content.
 
 <img src="https://github.com/upstash/roadmap/blob/main/public/doc/admin.png" width="600">
+
+## 7) Deploy to Vercel
+
+First, create a new Github repository and push your local changes.
+
+[Deploy it to Vercel](https://vercel.com/docs/concepts/git#deploying-a-git-repository). Ensure you add all [Environment Variables](https://vercel.com/docs/concepts/projects/environment-variables) in your .env file to Vercel during the import process.
