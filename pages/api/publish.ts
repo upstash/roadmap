@@ -1,10 +1,18 @@
-import { FEATURE_TYPE } from 'lib/const'
-import redis, { databaseName } from 'lib/redis'
-import authenticate from 'lib/authenticate'
+import redis, { databaseName } from '@/lib/redis'
+import { unstable_getServerSession } from 'next-auth/next'
+import { authOptions } from './auth/[...nextauth]'
+import { NextAuthOptions } from 'next-auth'
+import { FeatureStatus } from '@/store/index'
 
-export default authenticate(async (req, res) => {
+export default async (req, res) => {
+  const session = (await unstable_getServerSession(
+    req,
+    res,
+    authOptions as NextAuthOptions
+  )) as any
+
   try {
-    if (req.user.sub !== process.env.NEXT_PUBLIC_AUTH0_ADMIN_ID) {
+    if (session.user.id !== process.env.NEXT_PUBLIC_ADMIN_ID) {
       throw new Error('Unauthorized')
     }
 
@@ -13,10 +21,9 @@ export default authenticate(async (req, res) => {
     const FEATURE = { title, createdAt, user, status }
 
     const score = await redis.zscore(databaseName, JSON.stringify(FEATURE))
-    console.log('score', score)
 
     const isRemove = await redis.zrem(databaseName, JSON.stringify(FEATURE))
-    console.log('isRemove', isRemove)
+
     if (!isRemove) throw new Error('Failed to remove feature')
 
     await redis.zadd(
@@ -26,7 +33,7 @@ export default authenticate(async (req, res) => {
         score,
         member: JSON.stringify({
           ...FEATURE,
-          status: FEATURE_TYPE.RELEASE
+          status: FeatureStatus.Released
         })
       }
     )
@@ -35,4 +42,4 @@ export default authenticate(async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message })
   }
-})
+}

@@ -1,4 +1,4 @@
-export default function CardNewSkeleton() {
+export default function CardActiveLoading() {
   return (
     <article
       className="flex items-center space-x-4 text-zinc-100
