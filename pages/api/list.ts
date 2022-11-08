@@ -1,6 +1,7 @@
+import { NextApiRequest, NextApiResponse } from 'next'
 import redis, { databaseName } from 'lib/redis'
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const data = await redis.zrange(databaseName, 0, -1, { withScores: true })
 

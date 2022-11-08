@@ -1,19 +1,15 @@
 import { DateTime } from 'luxon'
+import { useContext } from 'react'
+import GlobalStoreContext, { Feature } from '../store'
+import { useSession } from 'next-auth/react'
 
-export default function CardNew({ item, onVote, onPublish, onRemove, admin }) {
+export default function CardActive({ item }: { item: Feature }) {
+  const { onPublish, onRemove, onVote } = useContext(GlobalStoreContext)
+  const { data: session } = useSession()
+
   const { score = 0, title, createdAt, user } = item
 
-  const publish = () => {
-    if (confirm('Feature will be release. Are you sure?')) {
-      onPublish(item)
-    }
-  }
-
-  const remove = () => {
-    if (confirm('Feature will be removed. Are you sure?')) {
-      onRemove(item)
-    }
-  }
+  const isAuthor = item.user.id === session?.user['id']
 
   return (
     <article className="flex items-center space-x-4">
@@ -51,25 +47,33 @@ export default function CardNew({ item, onVote, onPublish, onRemove, admin }) {
             </>
           )}
           <span>{DateTime.fromMillis(createdAt).toRelative()}</span>
-          {process.env.NEXT_PUBLIC_AUTH0_ADMIN_ID === admin && (
+          {isAuthor && (
             <>
               <span>•</span>
               <button
                 type="button"
-                onClick={publish}
                 className="hover:underline"
+                onClick={() => {
+                  if (confirm('Feature will be release. Are you sure?')) {
+                    onPublish(item)
+                  }
+                }}
               >
                 Release
               </button>
             </>
           )}
-          {process.env.NEXT_PUBLIC_AUTH0_ADMIN_ID === admin && (
+          {isAuthor && (
             <>
               <span>•</span>
               <button
                 type="button"
-                onClick={remove}
                 className="hover:underline"
+                onClick={() => {
+                  if (confirm('Feature will be removed. Are you sure?')) {
+                    onRemove(item)
+                  }
+                }}
               >
                 Remove
               </button>

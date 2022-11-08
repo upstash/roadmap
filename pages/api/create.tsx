@@ -1,9 +1,18 @@
 import { string } from 'yup'
 import { FEATURE_TYPE } from 'lib/const'
 import redis, { databaseName } from 'lib/redis'
-import authenticate from 'lib/authenticate'
+import { NextApiRequest, NextApiResponse } from 'next'
+import { unstable_getServerSession } from 'next-auth/next'
+import { NextAuthOptions } from 'next-auth'
+import { authOptions } from './auth/[...nextauth]'
 
-export default authenticate(async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const session = (await unstable_getServerSession(
+    req,
+    res,
+    authOptions as NextAuthOptions
+  )) as any
+
   try {
     const { title } = req.body
 
@@ -14,23 +23,21 @@ export default authenticate(async (req, res) => {
       throw new Error('Min 10 and Max 70 characters please.')
     }
 
-    const { nickname, email, updated_at, ...user } = req.user
-
-    const FEATURE = {
+    const newFeature = {
       title,
       createdAt: Date.now(),
-      user,
+      user: { name: session.user.name, id: session.user.id },
       status: FEATURE_TYPE.NEW
     }
 
     await redis.zadd(
       databaseName,
       { nx: true },
-      { score: 0, member: JSON.stringify(FEATURE) }
+      { score: 0, member: JSON.stringify(newFeature) }
     )
 
     res.json({ body: 'success' })
   } catch (error) {
-    res.status(400).json( { error: error.message } )
+    res.status(400).json({ error: error.message })
   }
-})
+}

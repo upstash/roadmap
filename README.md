@@ -48,7 +48,7 @@ cp .env.local.example .env.local
 
 ## Replace Your Logo
 
-Copy your logo image to `public` folder. Then edit `components/Header.tsx`.
+Copy your logo image to `public` folder. Then edit `components/header.tsx`.
 
 ## Run Your Project
 

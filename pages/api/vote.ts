@@ -1,15 +1,21 @@
 import redis, { databaseName } from 'lib/redis'
-import authenticate from 'lib/authenticate'
+import { unstable_getServerSession } from 'next-auth/next'
+import { authOptions } from './auth/[...nextauth]'
+import { NextAuthOptions } from 'next-auth'
 
-export default authenticate(async (req, res) => {
+export default async (req, res) => {
+  const session = (await unstable_getServerSession(
+    req,
+    res,
+    authOptions as NextAuthOptions
+  )) as any
+
   try {
     const { title, createdAt, user, status } = req.body
 
     const FEATURE = JSON.stringify({ title, createdAt, user, status })
 
-    const hasUser = await redis.sadd('s:' + FEATURE, req.user.sub)
-
-    console.log(hasUser)
+    const hasUser = await redis.sadd('s:' + FEATURE, session.user.id)
 
     if (!hasUser) throw new Error('You have already voted')
 
@@ -19,4 +25,4 @@ export default authenticate(async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message })
   }
-})
+}
