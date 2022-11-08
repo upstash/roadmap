@@ -42,8 +42,10 @@ cp .env.local.example .env.local
 
 #### Auth0 environment
 
-- `NEXT_PUBLIC_AUTH0_DOMAIN`: Can be found in the Auth0 dashboard under `settings`.
-- `NEXT_PUBLIC_AUTH0_CLIENT_ID`: Can be found in the Auth0 dashboard under `settings`.
+Go to your **Application -> Settings** page. You will see **Basic Information** section on top of the page.
+ 
+- `NEXT_PUBLIC_AUTH0_DOMAIN`: Can be found in **Basic Information --> Domain**.
+- `NEXT_PUBLIC_AUTH0_CLIENT_ID`: Can be found in **Basic Information --> Client ID**.
 - `NEXT_PUBLIC_AUTH0_ADMIN_ID`: This is the **user_id** of the admin user. First run your application and sign-in yourself. Then find your **user_id** in the Auth0 console, **"User Management > Users"** page.
 
 ## Replace Your Logo
