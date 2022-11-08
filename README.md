@@ -110,7 +110,7 @@ To set up GitHub for authentication:
 In the project folder, run
 
 ```
-next dev
+npm run dev
 ```
 
 ## `6` Let's make ourselves admin
