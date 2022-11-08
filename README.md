@@ -1,6 +1,6 @@
 # Roadmap Voting App
 
-<img src="https://github.com/upstash/roadmap/blob/main/public/doc-app.png" width="100%">
+<img src="https://github.com/upstash/roadmap/blob/main/public/doc/app.png" width="100%">
 
 You can deploy Roadmap application yourself and ask your users to vote for your
 roadmap features. See the [live example](https://roadmap.upstash.com).
