@@ -23,7 +23,7 @@ the [old version](https://github.com/vercel/next.js/tree/canary/examples/with-re
 6) [Let's make ourselves admin](#6-lets-make-ourselves-admin)
 7) [Deploy to Vercel](#7-deploy-to-vercel)
 
-## 1) Set up project
+## `1` Set up project
 
 First, open up your terminal and navigate and run the following:
 
@@ -39,7 +39,7 @@ app:
 cd roadmap && npm i
 ```
 
-## 2) Configuring Environment Variables
+## `2` Configuring Environment Variables
 
 Copy the `.env.local.example` file to `.env.local` (which
 will be ignored by Git):
@@ -48,7 +48,7 @@ will be ignored by Git):
 cp .env.local.example .env.local
 ```
 
-## 3) Set up Upstash Redis
+## `3` Set up Upstash Redis
 
 Go to the [Upstash Console](https://console.upstash.com/) and create a new
 database
@@ -60,7 +60,7 @@ the database details page in Upstash Console.
 
 <img src="https://github.com/upstash/roadmap/blob/main/public/doc/upstash.png" width="600">
 
-## 4) Set up user authentication with next-auth
+## `4` Set up user authentication with next-auth
 
 We will use the **[next-auth](https://next-auth.js.org/)** library for
 authentication. This example is preconfigured to use GitHub OAuth.
@@ -105,7 +105,7 @@ To set up GitHub for authentication:
 
 <img src="https://github.com/upstash/roadmap/blob/main/public/doc/github-9.png" width="500">
 
-## 5) Run Your Project
+## `5` Run Your Project
 
 In the project folder, run
 
@@ -113,7 +113,7 @@ In the project folder, run
 next dev
 ```
 
-## 6) Let's make ourselves admin
+## `6` Let's make ourselves admin
 
 `NEXT_PUBLIC_ADMIN_ID`: This is the id of the admin user. First run your
 application and sign-in yourself. You can find your own user id when you create
@@ -121,8 +121,11 @@ the first content.
 
 <img src="https://github.com/upstash/roadmap/blob/main/public/doc/admin.png" width="600">
 
-## 7) Deploy to Vercel
+## `7` Deploy to Vercel
 
 First, create a new Github repository and push your local changes.
 
-[Deploy it to Vercel](https://vercel.com/docs/concepts/git#deploying-a-git-repository). Ensure you add all [Environment Variables](https://vercel.com/docs/concepts/projects/environment-variables) in your .env file to Vercel during the import process.
+[Deploy it to Vercel](https://vercel.com/docs/concepts/git#deploying-a-git-repository)
+. Ensure you add
+all [Environment Variables](https://vercel.com/docs/concepts/projects/environment-variables)
+in your .env file to Vercel during the import process.
