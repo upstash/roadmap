@@ -11,7 +11,7 @@ export default async (req, res) => {
   )) as any
 
   try {
-    if (session.user.id !== process.env.NEXT_PUBLIC_ADMIN_ID) {
+    if (session.user.role !== 'admin') {
       throw new Error('Unauthorized')
     }
 
