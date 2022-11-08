@@ -9,7 +9,7 @@ export default function CardActive({ item }: { item: Feature }) {
 
   const { score = 0, title, createdAt, user } = item
 
-  const isAuthor = item.user.id === session?.user['id']
+  const isAuthor = item.user.sub && item.user.sub === session?.user['sub']
 
   return (
     <article className="flex items-center space-x-4">

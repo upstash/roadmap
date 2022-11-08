@@ -1,14 +1,13 @@
 import { useContext, useState } from 'react'
-import { FEATURE_TYPE } from 'lib/const'
 import CardActive from './card-active'
 import CardActiveLoading from './card-active-loading'
-import GlobalStoreContext from '../store'
+import GlobalStoreContext, { FeatureStatus } from '../store'
 
 export default function ListActive() {
   const { data, loadingData } = useContext(GlobalStoreContext)
 
   const dataFilterAndSort = data
-    .filter((item) => item.status === FEATURE_TYPE.NEW)
+    .filter((item) => item.status === FeatureStatus.Active)
     .sort((a, b) => b.score - a.score)
 
   const [showAll, showAllSet] = useState(false)

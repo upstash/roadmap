@@ -1,10 +1,10 @@
 import { string } from 'yup'
-import { FEATURE_TYPE } from 'lib/const'
 import redis, { databaseName } from 'lib/redis'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { unstable_getServerSession } from 'next-auth/next'
 import { NextAuthOptions } from 'next-auth'
 import { authOptions } from './auth/[...nextauth]'
+import { FeatureStatus } from '../../store'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = (await unstable_getServerSession(
@@ -26,8 +26,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const newFeature = {
       title,
       createdAt: Date.now(),
-      user: { name: session.user.name, id: session.user.id },
-      status: FEATURE_TYPE.NEW
+      user: { name: session.user.name, sub: session.user.id },
+      status: FeatureStatus.Active
     }
 
     await redis.zadd(

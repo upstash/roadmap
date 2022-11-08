@@ -1,13 +1,12 @@
 import { useContext } from 'react'
-import { FEATURE_TYPE } from 'lib/const'
 import CardReleased from './card-released'
-import GlobalStoreContext, { Feature } from '../store'
+import GlobalStoreContext, { Feature, FeatureStatus } from '../store'
 
 export default function ListReleased() {
   const { data } = useContext(GlobalStoreContext)
 
   const dataFilterAndSort: Feature[] = data
-    .filter((item) => item.status === FEATURE_TYPE.RELEASE)
+    .filter((item) => item.status === FeatureStatus.Released)
     .sort((a, b) => b.createdAt - a.createdAt)
 
   if (data.length === 0) return null

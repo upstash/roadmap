@@ -3,16 +3,16 @@ import useSWR from 'swr'
 import { toast } from 'react-toastify'
 
 export enum FeatureStatus {
-  new = 'new',
-  released = 'released'
+  Active = 'new',
+  Released = 'released'
 }
 
 export type Feature = {
-  title: string
   createdAt: number
-  user: { name: string; id: string }
-  status: FeatureStatus
   score: number
+  title: string
+  status: FeatureStatus
+  user: { name: string; sub: string }
 }
 
 export interface IGlobalStore {
@@ -91,7 +91,7 @@ export function GlobalStoreProvider({ children }) {
       })
   }
 
-  const onCreate = async (title, callback) => {
+  const onCreate = async (title, callback = () => {}) => {
     fetch('api/create', {
       method: 'POST',
       headers: {
@@ -107,7 +107,6 @@ export function GlobalStoreProvider({ children }) {
           toast.error(data.error)
         } else {
           toast.info('Your feature has been added to the list.')
-          // inputNewFeature.current.value = ''
           mutate()
           callback()
         }
