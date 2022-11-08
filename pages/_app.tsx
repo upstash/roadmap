@@ -29,7 +29,7 @@ export default function MyApp({
               <title>Roadmap Voting</title>
             </Head>
 
-            <div className="antialiased max-w-xl mx-auto px-4">
+            <div className="max-w-xl mx-auto px-4">
               <Header />
               <main>
                 <Component {...pageProps} />
