@@ -2,13 +2,15 @@ import { useContext, useState } from 'react'
 import CardActive from './card-active'
 import CardActiveLoading from './card-active-loading'
 import GlobalStoreContext, { FeatureStatus } from '@/store/index'
+import { sortBy } from 'lodash-es'
 
 export default function ListActive() {
   const { data, loadingData } = useContext(GlobalStoreContext)
 
-  const dataFilterAndSort = data
-    .filter((item) => item.status === FeatureStatus.Active)
-    .sort((a, b) => b.score - a.score)
+  const dataFilterAndSort = sortBy(
+    data.filter((item) => item.status === FeatureStatus.Active),
+    ['score', 'createdAt']
+  ).reverse()
 
   const [showAll, showAllSet] = useState(false)
 

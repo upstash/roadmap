@@ -1,13 +1,15 @@
 import { useContext } from 'react'
 import CardReleased from './card-released'
 import GlobalStoreContext, { Feature, FeatureStatus } from '@/store/index'
+import { sortBy } from 'lodash-es'
 
 export default function ListReleased() {
   const { data } = useContext(GlobalStoreContext)
 
-  const dataFilterAndSort: Feature[] = data
-    .filter((item) => item.status === FeatureStatus.Released)
-    .sort((a, b) => b.createdAt - a.createdAt)
+  const dataFilterAndSort: Feature[] = sortBy(
+    data.filter((item) => item.status === FeatureStatus.Released),
+    ['score']
+  ).reverse()
 
   if (dataFilterAndSort.length === 0) return null
 
