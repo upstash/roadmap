@@ -1,14 +1,15 @@
 import { DateTime } from 'luxon'
 import { useContext } from 'react'
 import GlobalStoreContext, { Feature } from '@/store/index'
+import { useSession } from 'next-auth/react'
 
 export default function CardActive({ item }: { item: Feature }) {
   const { onPublish, onRemove, onVote } = useContext(GlobalStoreContext)
+  const { data: session } = useSession()
 
   const { score = 0, title, createdAt, user } = item
 
-  const isAdmin =
-    item.user.sub && item.user.sub === process.env.NEXT_PUBLIC_ADMIN_ID
+  const isAdmin = session?.user['role'] === 'admin'
 
   return (
     <article className="flex items-center space-x-4">

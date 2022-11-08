@@ -17,7 +17,13 @@ export const authOptions = {
     async session(session) {
       return {
         ...session.session,
-        user: { ...session.user }
+        user: {
+          ...session.user,
+          role:
+            session.user.id === process.env.NEXT_PUBLIC_ADMIN_ID
+              ? 'admin'
+              : 'user'
+        }
       }
     }
   }
