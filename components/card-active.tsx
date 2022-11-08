@@ -1,15 +1,14 @@
 import { DateTime } from 'luxon'
 import { useContext } from 'react'
 import GlobalStoreContext, { Feature } from '@/store/index'
-import { useSession } from 'next-auth/react'
 
 export default function CardActive({ item }: { item: Feature }) {
   const { onPublish, onRemove, onVote } = useContext(GlobalStoreContext)
-  const { data: session } = useSession()
 
   const { score = 0, title, createdAt, user } = item
 
-  const isAuthor = item.user.sub && item.user.sub === session?.user['sub']
+  const isAdmin =
+    item.user.sub && item.user.sub === process.env.NEXT_PUBLIC_ADMIN_ID
 
   return (
     <article className="flex items-center space-x-4">
@@ -47,7 +46,7 @@ export default function CardActive({ item }: { item: Feature }) {
             </>
           )}
           <span>{DateTime.fromMillis(createdAt).toRelative()}</span>
-          {isAuthor && (
+          {isAdmin && (
             <>
               <span>•</span>
               <button
@@ -63,7 +62,7 @@ export default function CardActive({ item }: { item: Feature }) {
               </button>
             </>
           )}
-          {isAuthor && (
+          {isAdmin && (
             <>
               <span>•</span>
               <button
