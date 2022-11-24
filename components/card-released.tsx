@@ -1,4 +1,4 @@
-export default function CardRelease({ item }) {
+export default function CardReleased({ item }) {
   const { score, title } = item
 
   return (

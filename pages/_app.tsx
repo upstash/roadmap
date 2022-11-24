@@ -1,22 +1,22 @@
 import 'styles/globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 
+import { SessionProvider } from 'next-auth/react'
 import { SWRConfig } from 'swr'
 import { ToastContainer } from 'react-toastify'
-import { Auth0Provider } from '@auth0/auth0-react'
+import { GlobalStoreProvider } from '@/store/index'
 import { ThemeProvider } from 'next-themes'
 import Head from 'next/head'
-import Footer from 'components/Footer'
-import Header from 'components/Header'
+import Footer from '@/components/footer'
+import Header from '@/components/header'
 
-export default function MyApp({ Component, pageProps }) {
+export default function MyApp({
+  Component,
+  pageProps: { session, ...pageProps }
+}) {
   return (
-    <ThemeProvider attribute="class">
-      <Auth0Provider
-        domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN}
-        clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID}
-        redirectUri={process.browser && window.location.origin}
-      >
+    <SessionProvider session={session}>
+      <ThemeProvider attribute="class">
         <SWRConfig
           value={{
             revalidateOnFocus: false,
@@ -24,21 +24,27 @@ export default function MyApp({ Component, pageProps }) {
               fetch(resource, init).then((res) => res.json())
           }}
         >
-          <Head>
-            <title>Roadmap Voting</title>
-          </Head>
+          <GlobalStoreProvider>
+            <Head>
+              <title>Roadmap Voting</title>
+            </Head>
 
-          <div className="antialiased max-w-xl mx-auto px-4">
-            <Header />
-            <main>
-              <Component {...pageProps} />
-            </main>
-            <Footer />
-          </div>
+            <div className="max-w-xl mx-auto px-4">
+              <Header />
+              <main>
+                <Component {...pageProps} />
+              </main>
+              <Footer />
+            </div>
 
-          <ToastContainer autoClose={3000} hideProgressBar draggable={false} />
+            <ToastContainer
+              autoClose={3000}
+              hideProgressBar
+              draggable={false}
+            />
+          </GlobalStoreProvider>
         </SWRConfig>
-      </Auth0Provider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </SessionProvider>
   )
 }

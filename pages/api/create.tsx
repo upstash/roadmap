@@ -1,9 +1,18 @@
 import { string } from 'yup'
-import { FEATURE_TYPE } from 'lib/const'
-import redis, { databaseName } from 'lib/redis'
-import authenticate from 'lib/authenticate'
+import redis, { databaseName } from '@/lib/redis'
+import { NextApiRequest, NextApiResponse } from 'next'
+import { unstable_getServerSession } from 'next-auth/next'
+import { NextAuthOptions } from 'next-auth'
+import { authOptions } from './auth/[...nextauth]'
+import { FeatureStatus } from '@/store/index'
 
-export default authenticate(async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const session = (await unstable_getServerSession(
+    req,
+    res,
+    authOptions as NextAuthOptions
+  )) as any
+
   try {
     const { title } = req.body
 
@@ -14,23 +23,51 @@ export default authenticate(async (req, res) => {
       throw new Error('Min 10 and Max 70 characters please.')
     }
 
-    const { nickname, email, updated_at, ...user } = req.user
-
-    const FEATURE = {
+    const newFeature = {
       title,
       createdAt: Date.now(),
-      user,
-      status: FEATURE_TYPE.NEW
+      user: { name: session.user.name, sub: session.user.id },
+      status: FeatureStatus.Active
     }
 
     await redis.zadd(
       databaseName,
       { nx: true },
-      { score: 0, member: JSON.stringify(FEATURE) }
+      { score: 0, member: JSON.stringify(newFeature) }
     )
+
+    if (process.env.WEBHOOK_URL) {
+      // post webhook message to slack
+      fetch(process.env.WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          blocks: [
+            {
+              type: 'context',
+              elements: [
+                {
+                  type: 'plain_text',
+                  text: 'New feature request:'
+                }
+              ]
+            },
+            {
+              type: 'section',
+              text: {
+                type: 'mrkdwn',
+                text: `*${title.trim()}*`
+              }
+            }
+          ]
+        })
+      })
+    }
 
     res.json({ body: 'success' })
   } catch (error) {
-    res.status(400).json( { error: error.message } )
+    res.status(400).json({ error: error.message })
   }
-})
+}
