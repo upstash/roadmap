@@ -64,6 +64,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           ]
         })
       })
+        .then((res) => res.json())
+        .then((json) => console.log(json))
     }
 
     res.json({ body: 'success' })

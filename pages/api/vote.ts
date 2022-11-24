@@ -21,7 +21,7 @@ export default async (req, res) => {
 
     const data = await redis.zincrby(databaseName, 1, FEATURE)
 
-    res.json(data)
+    res.status(200).json(data)
   } catch (error) {
     res.status(400).json({ error: error.message })
   }

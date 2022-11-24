@@ -24,7 +24,7 @@ export default async (req, res) => {
       throw new Error('Feature not found')
     }
 
-    res.json({ body: 'success' })
+    res.status(200).json({ body: 'success' })
   } catch (error) {
     res.status(400).json({ error: error.message })
   }
