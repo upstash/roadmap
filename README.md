@@ -15,13 +15,13 @@ the [old version](https://github.com/vercel/next.js/tree/canary/examples/with-re
 
 ## Docs
 
-1) [Set up project](#1-set-up-project)
-2) [Configuring Environment Variables](#2-configuring-environment-variables)
-3) [Set up Database](#3-set-up-upstash-redis)
-4) [Set up user authentication with next-auth](#4-set-up-user-authentication-with-next-auth)
-5) [Run Your Project](#5-run-your-project)
-6) [Let's make ourselves admin](#6-lets-make-ourselves-admin)
-7) [Deploy to Vercel](#7-deploy-to-vercel)
+1. [Set up project](#1-set-up-project)
+2. [Configuring Environment Variables](#2-configuring-environment-variables)
+3. [Set up Database](#3-set-up-upstash-redis)
+4. [Set up user authentication with next-auth](#4-set-up-user-authentication-with-next-auth)
+5. [Run Your Project](#5-run-your-project)
+6. [Let's make ourselves admin](#6-lets-make-ourselves-admin)
+7. [Deploy to Vercel](#7-deploy-to-vercel)
 
 ## `1` Set up project
 
