@@ -20,7 +20,7 @@ export const authOptions = {
         user: {
           ...session.user,
           role:
-            session.user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL
+            process.env.NEXT_PUBLIC_ADMIN_EMAILS.split(',').some(e => e.trim() === session.user.email)
               ? 'admin'
               : 'user'
         }
