@@ -18,7 +18,7 @@ export default async (req, res) => {
     const { title, createdAt, user, status } = req.body
     const FEATURE = JSON.stringify({ title, createdAt, user, status })
 
-    console.log({FEATURE})
+    console.log({ all: await redis.zrange(databaseName, 0, -1), FEATURE })
 
     const isRemove = await redis.zrem(databaseName, FEATURE)
 
@@ -31,3 +31,7 @@ export default async (req, res) => {
     res.status(400).json({ error: error.message })
   }
 }
+
+
+
+
