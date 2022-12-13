@@ -16,9 +16,11 @@ export default async (req, res) => {
     }
 
     const { title, createdAt, user, status } = req.body
+    const FEATURE = JSON.stringify({ title, createdAt, user, status })
 
+    console.log({FEATURE})
 
-    const isRemove = await redis.zrem(databaseName, { title, createdAt, user, status })
+    const isRemove = await redis.zrem(databaseName, FEATURE)
 
     if (!isRemove) {
       throw new Error('Feature not found')
