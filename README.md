@@ -117,7 +117,7 @@ npm run dev
 
 Only admin users can delete and release content.
 
-`NEXT_PUBLIC_ADMIN_EMAIL`: Enter your Github email address here.
+`NEXT_PUBLIC_ADMIN_EMAILS`: Enter your Github emails here, separated by commas.
 
 ## `7` Deploy to Vercel
 
