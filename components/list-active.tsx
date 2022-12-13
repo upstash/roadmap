@@ -5,7 +5,7 @@ import GlobalStoreContext, { FeatureStatus } from '@/store/index'
 import { sortBy } from 'lodash-es'
 
 export default function ListActive() {
-  const { data, loadingData } = useContext(GlobalStoreContext)
+  const { data, loadingData, } = useContext(GlobalStoreContext)
 
   const dataFilterAndSort = sortBy(
     data.filter((item) => item.status === FeatureStatus.Active),

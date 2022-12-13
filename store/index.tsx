@@ -27,7 +27,7 @@ export interface IGlobalStore {
 const GlobalStoreContext = createContext<IGlobalStore>(null)
 
 export function GlobalStoreProvider({ children }) {
-  const { data, isValidating, mutate, error } = useSWR<Feature[]>('api/list', {
+  const { data, isValidating, mutate, error, } = useSWR<Feature[]>('api/list', {
     fallbackData: []
   })
 
