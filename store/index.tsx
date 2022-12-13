@@ -7,6 +7,11 @@ export enum FeatureStatus {
   Released = 'released'
 }
 
+export enum VoteType {
+  UP = 'up',
+  DOWN = 'down'
+}
+
 export type Feature = {
   createdAt: number
   score: number
@@ -20,14 +25,14 @@ export interface IGlobalStore {
   loadingData: boolean
   onPublish: (item: Feature) => void
   onRemove: (item: Feature) => void
-  onVote: (item: Feature) => void
+  onVote: (item: Feature, voteType: VoteType) => void
   onCreate: (title: string, callback?: () => void) => void
 }
 
 const GlobalStoreContext = createContext<IGlobalStore>(null)
 
 export function GlobalStoreProvider({ children }) {
-  const { data, isValidating, mutate, error, } = useSWR<Feature[]>('api/list', {
+  const { data, isValidating, mutate, error } = useSWR<Feature[]>('api/list', {
     fallbackData: []
   })
 
@@ -73,13 +78,18 @@ export function GlobalStoreProvider({ children }) {
       })
   }
 
-  const onVote = async (item) => {
+  const onVote = async (item, voteType: VoteType) => {
+    const reqBody = {
+      ...item,
+      voteType
+    }
+
     fetch('api/vote', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(item)
+      body: JSON.stringify(reqBody)
     })
       .then((response) => response.json())
       .then((data) => {
