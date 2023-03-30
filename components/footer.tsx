@@ -26,7 +26,7 @@ export default function Footer() {
           onChange={(e) => setTheme(e.target.value)}
         >
           {themes.map((theme: string) => (
-            <option key={theme} value={theme}>
+            <option className="dark:text-black" key={theme} value={theme}>
               {theme}
             </option>
           ))}
