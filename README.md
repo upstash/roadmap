@@ -2,6 +2,11 @@
 
 <img src="https://github.com/upstash/roadmap/blob/main/public/doc/app.png" width="100%">
 
+> [!NOTE]  
+> **This project is a Community Project.**
+>
+> The project is maintained and supported by the community. Upstash may contribute but does not officially support or assume responsibility for it.
+
 You can deploy Roadmap application yourself and ask your users to vote for your
 roadmap features. See the [live example](https://roadmap.upstash.com).
 
