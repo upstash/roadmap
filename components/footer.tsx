@@ -21,7 +21,7 @@ export default function Footer() {
 
       <div className="mt-6">
         <select
-          className="form-select py-2 text-sm capitalize leading-none"
+          className="form-select py-2 text-sm capitalize"
           value={theme}
           onChange={(e) => setTheme(e.target.value)}
         >

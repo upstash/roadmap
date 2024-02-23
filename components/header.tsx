@@ -1,7 +1,13 @@
+import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 
 export default function Header() {
+  const [mounted, setMounted] = useState<boolean>(false)
   const { resolvedTheme } = useTheme()
+
+  useEffect(() => setMounted(true), [])
+
+  if (!mounted) return null
 
   return (
     <header className="pt-20 mb-12">
